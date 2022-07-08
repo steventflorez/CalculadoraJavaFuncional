@@ -10,8 +10,9 @@ public class Calculator {
 
     public void suma(){
 
-        AtomicInteger index = new AtomicInteger();
+
         if (array1.size() <= array2.size()){
+            AtomicInteger index = new AtomicInteger();
             array1.stream()
                     .map(n1 ->{
                         return n1 + array2.get(index.getAndIncrement());
@@ -20,6 +21,7 @@ public class Calculator {
                     .forEach(n1 -> logger.info("la suma: " + n1.toString()));
 
         }else {
+            AtomicInteger index = new AtomicInteger();
             array2.stream()
                     .map(n1 ->{
                         return n1 + array1.get(index.getAndIncrement());
@@ -31,8 +33,9 @@ public class Calculator {
     }
     public void resta(){
 
-        AtomicInteger index = new AtomicInteger();
+
         if (array1.size() <= array2.size()){
+            AtomicInteger index = new AtomicInteger();
             array1.stream()
                     .map(n1 ->{
                         return n1 - array2.get(index.getAndIncrement());
@@ -40,6 +43,7 @@ public class Calculator {
 
                     .forEach(n1 -> logger.info("la resta es:" + n1.toString()));
         }else {
+            AtomicInteger index = new AtomicInteger();
             array2.stream()
                     .map(n1 ->{
                         return n1 - array1.get(index.getAndIncrement());
@@ -52,12 +56,22 @@ public class Calculator {
     }
     public void multiplicar(){
         AtomicInteger index = new AtomicInteger();
-        array1.stream()
-                .map(n1 ->{
-                    return n1 * array2.get(index.getAndIncrement());
-                })
+        if (array1.size() <= array2.size()){
+            array1.stream()
+                    .map(n1 ->{
+                        return n1 * array2.get(index.getAndIncrement());
+                    })
 
-                .forEach(n1 -> logger.info("el factor es:" + n1.toString()));
+                    .forEach(n1 -> logger.info("el factor es:" + n1.toString()));
+        }else {
+            array2.stream()
+                    .map(n1 ->{
+                        return n1 * array1.get(index.getAndIncrement());
+                    })
+
+                    .forEach(n1 -> logger.info("el factor es:" + n1.toString()));
+        }
+
     }
 
     public void Dividido(){
